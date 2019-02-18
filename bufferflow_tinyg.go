@@ -825,7 +825,7 @@ func (b *BufferflowTinyg) RewriteCmd(cmd string) string {
 }
 */
 
-// This is called if user wiped entire buffer of gcode commands queued up
+// ReleaseLock is called if user wiped entire buffer of gcode commands queued up
 // which is up to 25,000 of them. So, we need to release the OnBlockUntilReady()
 // in a way where the command will not get executed, so send unblockType of 2
 func (b *BufferflowTinyg) ReleaseLock() {
@@ -922,7 +922,7 @@ func (b *BufferflowTinyg) Close() {
 	}()
 }
 
-//	Gets the paused state of this buffer
+// GetPaused gets the paused state of this buffer
 //	go-routine safe.
 func (b *BufferflowTinyg) GetPaused() bool {
 	b.lock.Lock()
@@ -930,7 +930,7 @@ func (b *BufferflowTinyg) GetPaused() bool {
 	return b.Paused
 }
 
-//	Sets the paused state of this buffer
+// Sets the paused state of this buffer
 //	go-routine safe.
 func (b *BufferflowTinyg) SetPaused(isPaused bool, semRelease int) {
 	b.lock.Lock()

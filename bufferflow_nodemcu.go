@@ -371,7 +371,7 @@ func (b *BufferflowNodeMcu) RewriteSerialData(cmd string, id string) string {
 	return ""
 }
 
-//	Gets the paused state of this buffer
+// GetPaused gets the paused state of this buffer
 //	go-routine safe.
 func (b *BufferflowNodeMcu) GetPaused() bool {
 	b.lock.Lock()
@@ -379,7 +379,7 @@ func (b *BufferflowNodeMcu) GetPaused() bool {
 	return b.Paused
 }
 
-//	Sets the paused state of this buffer
+// Sets the paused state of this buffer
 //	go-routine safe.
 func (b *BufferflowNodeMcu) SetPaused(isPaused bool, semRelease int) {
 	b.lock.Lock()

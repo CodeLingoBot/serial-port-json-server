@@ -403,7 +403,7 @@ func (b *BufferflowMarlin) Close() {
 	b.quit <- 1
 }
 
-//	Gets the paused state of this buffer
+// GetPaused gets the paused state of this buffer
 //	go-routine safe.
 func (b *BufferflowMarlin) GetPaused() bool {
 	b.lock.Lock()
@@ -411,7 +411,7 @@ func (b *BufferflowMarlin) GetPaused() bool {
 	return b.Paused
 }
 
-//	Sets the paused state of this buffer
+// Sets the paused state of this buffer
 //	go-routine safe.
 func (b *BufferflowMarlin) SetPaused(isPaused bool, semRelease int) {
 	b.lock.Lock()
@@ -430,7 +430,7 @@ func (b *BufferflowMarlin) SetPaused(isPaused bool, semRelease int) {
 	}
 }
 
-//local version of buffer wipe loop needed to handle pseudo clear buffer (%) without passing that value on to
+// local version of buffer wipe loop needed to handle pseudo clear buffer (%) without passing that value on to
 func (b *BufferflowMarlin) LocalBufferWipe(p *serport) {
 	log.Printf("Pseudo command received to wipe marlin buffer but *not* send on to marlin controller.")
 

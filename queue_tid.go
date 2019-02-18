@@ -46,14 +46,14 @@ type QueueTid struct {
 	lenOfCmds int
 }
 
-//	Creates a new pointer to a new queue.
+// Creates a new pointer to a new queue.
 func NewQueueTid() *QueueTid {
 	q := &QueueTid{}
 	q.lock = &sync.Mutex{}
 	return q
 }
 
-//	Returns the number of elements in the queue (i.e. size/length)
+// Len returns the number of elements in the queue (i.e. size/length)
 //	go-routine safe.
 func (q *QueueTid) Len() int {
 	q.lock.Lock()
@@ -61,7 +61,7 @@ func (q *QueueTid) Len() int {
 	return q.count
 }
 
-//	Returns the length of the data (gcode cmd) in the queue (i.e. size/length)
+// LenOfCmds returns the length of the data (gcode cmd) in the queue (i.e. size/length)
 //	go-routine safe.
 func (q *QueueTid) LenOfCmds() int {
 	q.lock.Lock()
@@ -69,7 +69,7 @@ func (q *QueueTid) LenOfCmds() int {
 	return q.lenOfCmds
 }
 
-//	Pushes/inserts a value at the end/tail of the queue.
+// Pushes/inserts a value at the end/tail of the queue.
 //	Note: this function does mutate the queue.
 //	go-routine safe.
 func (q *QueueTid) Push(item string, id string, tid int) {
@@ -89,7 +89,7 @@ func (q *QueueTid) Push(item string, id string, tid int) {
 	q.lenOfCmds += len(item)
 }
 
-//	Shifts/inserts a value at the front of the queue.
+// Shifts/inserts a value at the front of the queue.
 //	Note: this function does mutate the queue.
 //	go-routine safe.
 func (q *QueueTid) Shift(item string, id string, tid int) {
@@ -113,7 +113,7 @@ func (q *QueueTid) Shift(item string, id string, tid int) {
 	q.lenOfCmds += len(item)
 }
 
-//	Returns the value at the front of the queue.
+// Poll returns the value at the front of the queue.
 //	i.e. the oldest value in the queue.
 //	Note: this function does mutate the queue.
 //	go-routine safe.
@@ -137,7 +137,7 @@ func (q *QueueTid) Poll() (string, string, int) {
 	return n.data, n.id, n.tid
 }
 
-//	Returns a read value at the front of the queue.
+// Peek returns a read value at the front of the queue.
 //	i.e. the oldest value in the queue.
 //	Note: this function does NOT mutate the queue.
 //	go-routine safe.
@@ -153,7 +153,7 @@ func (q *QueueTid) Peek() (string, string, int) {
 	return n.data, n.id, n.tid
 }
 
-//	Returns a read value at the front of the queue.
+// Delete returns a read value at the front of the queue.
 //	i.e. the oldest value in the queue.
 //	Note: this function does NOT mutate the queue.
 //	go-routine safe.

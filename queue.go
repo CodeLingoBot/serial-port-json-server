@@ -48,14 +48,14 @@ type Queue struct {
 	lenOfCmds int
 }
 
-//	Creates a new pointer to a new queue.
+// Creates a new pointer to a new queue.
 func NewQueue() *Queue {
 	q := &Queue{}
 	q.lock = &sync.Mutex{}
 	return q
 }
 
-//	Returns the number of elements in the queue (i.e. size/length)
+// Len returns the number of elements in the queue (i.e. size/length)
 //	go-routine safe.
 func (q *Queue) Len() int {
 	q.lock.Lock()
@@ -63,7 +63,7 @@ func (q *Queue) Len() int {
 	return q.count
 }
 
-//	Returns the length of the data (gcode cmd) in the queue (i.e. size/length)
+// LenOfCmds returns the length of the data (gcode cmd) in the queue (i.e. size/length)
 //	go-routine safe.
 func (q *Queue) LenOfCmds() int {
 	q.lock.Lock()
@@ -71,7 +71,7 @@ func (q *Queue) LenOfCmds() int {
 	return q.lenOfCmds
 }
 
-//	Pushes/inserts a value at the end/tail of the queue.
+// Pushes/inserts a value at the end/tail of the queue.
 //	Note: this function does mutate the queue.
 //	go-routine safe.
 func (q *Queue) Push(item string, id string) {
@@ -91,7 +91,7 @@ func (q *Queue) Push(item string, id string) {
 	q.lenOfCmds += len(item)
 }
 
-//	Returns the value at the front of the queue.
+// Poll returns the value at the front of the queue.
 //	i.e. the oldest value in the queue.
 //	Note: this function does mutate the queue.
 //	go-routine safe.
@@ -115,7 +115,7 @@ func (q *Queue) Poll() (string, string) {
 	return n.data, n.id
 }
 
-//	Returns a read value at the front of the queue.
+// Peek returns a read value at the front of the queue.
 //	i.e. the oldest value in the queue.
 //	Note: this function does NOT mutate the queue.
 //	go-routine safe.
@@ -131,7 +131,7 @@ func (q *Queue) Peek() (string, string) {
 	return n.data, n.id
 }
 
-//	Returns a read value at the front of the queue.
+// Delete returns a read value at the front of the queue.
 //	i.e. the oldest value in the queue.
 //	Note: this function does NOT mutate the queue.
 //	go-routine safe.

@@ -403,7 +403,7 @@ func (b *BufferflowGrbl) Close() {
 	b.quit <- 1
 }
 
-//	Gets the paused state of this buffer
+// GetPaused gets the paused state of this buffer
 //	go-routine safe.
 func (b *BufferflowGrbl) GetPaused() bool {
 	b.lock.Lock()
@@ -411,7 +411,7 @@ func (b *BufferflowGrbl) GetPaused() bool {
 	return b.Paused
 }
 
-//	Sets the paused state of this buffer
+// Sets the paused state of this buffer
 //	go-routine safe.
 func (b *BufferflowGrbl) SetPaused(isPaused bool, semRelease int) {
 	b.lock.Lock()
@@ -430,7 +430,7 @@ func (b *BufferflowGrbl) SetPaused(isPaused bool, semRelease int) {
 	}
 }
 
-//local version of buffer wipe loop needed to handle pseudo clear buffer (%) without passing that value on to
+// local version of buffer wipe loop needed to handle pseudo clear buffer (%) without passing that value on to
 func (b *BufferflowGrbl) LocalBufferWipe(p *serport) {
 	log.Printf("Pseudo command received to wipe grbl buffer but *not* send on to grbl controller.")
 
